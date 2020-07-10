@@ -1,0 +1,80 @@
+ml>
+<head>
+  <title>Simple Store</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <ul class="nav navbar-nav navbar-left">
+      <li>
+        <a class="navbar-brand" href="#">Home</a>
+<a class="navbar-brand" href="/admin-login/">Admin Login</a>
+      </li>
+
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a class="navbar-brand" href="/cart/">Cart: <b> {{cart_size}} Items</b></a>
+        <a class="navbar-brand" href="cart/checkout/">Checkout</a>
+
+      </li>
+
+
+    </ul>
+  </nav>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="page-header" style="text-align:center">
+
+    <h2>Simple Store</h2>
+
+  </div>
+
+<style type="text/css">
+  .centerdv
+  {
+    width=20%;
+    margin-left=auto;
+    margin-right=auto;
+    text-align=center;
+
+  }
+
+
+.imgscale
+{
+  max-width=20px;
+  max-height=24px;
+}
+</style>
+
+
+<div class = "container">
+  <div>
+    <h3>Total Price: <span class="label label-primary">{{total_price}}</span></h3>
+    <br>
+    {%for item in cart_items%}
+    <div class="media">
+      <a class="pull-left" href=#>
+        <img class="media-object imgscale" src="{{item.imglink}}"/>
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">{{item.name}}</h4>
+          {{item.description}}
+          <span class="badge pull-right">{{item.price}}</span>
+        </div>
+        <form method="post" action="cart/remove/">
+          {%csrf_token%}
+          <<input type="hidden" name="obj_id" value={{item.id}}/>
+          <<input type="submit" name="remove" value="remove" class="btn btn-danger pull-right">
+        </form>
+      </div>
+  {%endfor%}
+  <<button class="btn btn-success btn-lg " onclick="window.location= 'cart/checkout';">Chechkout</button>
+
+</body>
+</html>

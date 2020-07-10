@@ -55,7 +55,7 @@ ROOT_URLCONF = 'simpleStore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'store/templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
